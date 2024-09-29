@@ -1,0 +1,74 @@
+#include <stdio.h>
+
+#define Max 10
+
+int stack[Max];
+int top=-1;
+
+void push() {
+    int x;
+    printf("Enter data:");
+    scanf("%d", &x);
+    if (top==Max-1) {
+        printf("Stack overflow\n");
+    } else{
+        top=top+1;
+        stack[top]=x;
+        printf("Pushed:%d\n",x);
+    }
+}
+
+void pop() {
+    if (top==-1) {
+        printf("Stack underflow\n");
+    } else {
+        int y=stack[top];
+        top=top-1;
+        printf("Popped:%d\n",y);
+    }
+}
+
+void peek() {
+    if (top==-1) {
+        printf("Stack is empty\n");
+    } else {
+        printf("The top most element is %d\n",stack[top]);
+    }
+}
+
+void display() {
+    if (top==-1) {
+        printf("Stack is empty\n");
+    } else {
+        printf("Stack elements: ");
+        for (int i=top;i>=0;i--) {
+            printf("%d",stack[i]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int choice;
+    char ch;
+
+    do {
+        printf("1 for push, 2 for pop, 3 for peek, 4 for display\n");
+        scanf("%d", &choice);
+        switch (choice) {
+            case 1: push(); break;
+            case 2: pop(); break;
+            case 3: peek(); break;
+            case 4: display(); break;
+            default: printf("Wrong input\n"); break;
+        }
+
+        printf("Press y to continue: ");
+        getchar();
+        scanf("%c",&ch);
+
+    } while (ch == 'y'||ch == 'Y');
+
+    return 0;
+}
+
